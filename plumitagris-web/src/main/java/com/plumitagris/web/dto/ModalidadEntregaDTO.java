@@ -1,0 +1,13 @@
+package com.plumitagris.web.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ModalidadEntregaDTO {
+    private Integer idModalidadEntrega;
+    private String nombre;
+}
