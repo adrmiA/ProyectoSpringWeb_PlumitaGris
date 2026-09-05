@@ -1,6 +1,1805 @@
-body {
-    background-color: #f4f6fb;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+/* ============================================================
+   VARIABLES
+   ============================================================ */
+
+:root {
+    --pg-bg: #121214;
+    --pg-surface: #1b1b1f;
+    --pg-surface-alt: #222227;
+    --pg-surface-hover: #2a2a31;
+
+    --pg-border: #2f2f36;
+
+    --pg-text: #f3f2f0;
+    --pg-text-muted: #9a9aa2;
+
+    --pg-accent: #c98a4b;
+    --pg-accent-hover: #e0a15f;
+    --pg-accent-soft: rgba(201, 138, 75, 0.15);
+
+    --pg-danger: #e5626a;
+    --pg-danger-soft: rgba(229, 98, 106, 0.15);
+
+    --pg-success: #5cb787;
+    --pg-success-soft: rgba(92, 183, 135, 0.15);
+
+    --pg-radius: 16px;
+    --pg-radius-sm: 10px;
 }
-.navbar-brand {
-    letter-spacing: 0.5px;
+
+
+/* ============================================================
+   RESET / BASE
+   ============================================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    background-color: var(--pg-bg);
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--pg-bg);
+    color: var(--pg-text);
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', sans-serif;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+/* ============================================================
+   BOOTSTRAP - AJUSTES GENERALES
+   ============================================================ */
+
+.container {
+    width: 100%;
+}
+
+
+/* Evita que Bootstrap pinte enlaces azules */
+
+a:not(.btn) {
+    color: inherit;
+}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+
+.pg-navbar {
+    background-color: var(--pg-surface);
+    border-bottom: 1px solid var(--pg-border);
+    padding: 0.85rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+}
+
+.pg-navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+}
+
+/* Menú escritorio */
+
+.pg-nav-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.75rem;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pg-nav-group li {
+    margin: 0;
+    padding: 0;
+}
+
+.pg-nav-group a {
+    color: var(--pg-text-muted);
+    font-weight: 500;
+    font-size: 0.95rem;
+
+    padding: 0.4rem 0.2rem;
+
+    transition:
+            color 0.15s ease,
+            opacity 0.15s ease;
+
+    white-space: nowrap;
+}
+
+.pg-nav-group a:hover {
+    color: var(--pg-text);
+}
+
+/* Logo */
+
+.pg-brand {
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--pg-text) !important;
+    white-space: nowrap;
+}
+
+.pg-brand span {
+    color: var(--pg-accent);
+}
+
+/* Botón hamburguesa */
+
+.pg-toggler {
+    display: none;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 10px;
+
+    background: var(--pg-surface-alt);
+    border: 1px solid var(--pg-border);
+
+    color: var(--pg-text);
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+.pg-toggler:hover {
+    background-color: var(--pg-surface-hover);
+}
+
+.pg-toggler i {
+    font-size: 1.5rem;
+}
+
+/* Logo móvil */
+
+#pgBrandMobile {
+    display: none !important;
+}
+
+
+/* ============================================================
+   OFFCANVAS
+   ============================================================ */
+
+.pg-mobile-menu {
+    width: min(85vw, 340px) !important;
+
+    background-color: var(--pg-surface);
+
+    border-left: 1px solid var(--pg-border);
+
+    color: var(--pg-text);
+
+    z-index: 1050;
+}
+
+.pg-mobile-menu .offcanvas-header {
+    padding: 1.25rem;
+
+    border-bottom: 1px solid var(--pg-border);
+}
+
+.pg-mobile-menu .offcanvas-body {
+    padding: 1.25rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* Enlaces */
+
+.pg-mobile-links {
+    display: flex;
+    flex-direction: column;
+}
+
+.pg-mobile-links a {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+
+    color: var(--pg-text-muted);
+
+    font-size: 0.95rem;
+    font-weight: 500;
+
+    padding: 1rem 0;
+
+    border-bottom: 1px solid var(--pg-border);
+
+    transition:
+            color 0.15s ease,
+            padding-left 0.15s ease;
+}
+
+.pg-mobile-links a:hover {
+    color: var(--pg-accent);
+    padding-left: 0.3rem;
+}
+
+.pg-mobile-links i {
+    width: 20px;
+
+    color: var(--pg-accent);
+
+    font-size: 1.1rem;
+}
+
+/* Usuario */
+
+.pg-mobile-user {
+    margin-top: auto;
+    padding-top: 2rem;
+}
+
+.pg-user-pill {
+    color: var(--pg-text-muted);
+    font-size: 0.85rem;
+
+    margin-bottom: 0.75rem;
+}
+
+
+/* ============================================================
+   NAVBAR RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 860px) {
+
+    .pg-navbar .container {
+        justify-content: space-between;
+    }
+
+    /* Ocultar navegación desktop */
+
+    .pg-nav-group {
+        display: none !important;
+    }
+
+    /* Mostrar logo móvil */
+
+    #pgBrandMobile {
+        display: inline-block !important;
+    }
+
+    /* Mostrar hamburguesa */
+
+    .pg-toggler {
+        display: inline-flex;
+    }
+}
+
+
+/* ---------- Menú escritorio ---------- */
+
+.pg-nav-group {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1rem, 3vw, 1.75rem);
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pg-nav-group li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pg-nav-group li a:not(.pg-brand) {
+    display: block;
+    color: var(--pg-text-muted);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.4rem 0.2rem;
+    white-space: nowrap;
+
+    transition:
+            color 0.15s ease,
+            transform 0.15s ease;
+}
+
+.pg-nav-group li a:not(.pg-brand):hover {
+    color: var(--pg-text);
+}
+
+
+/* ---------- Logo ---------- */
+
+.pg-brand {
+    display: inline-block;
+    color: var(--pg-text) !important;
+    font-weight: 700;
+    font-size: 1.15rem;
+    white-space: nowrap;
+    padding: 0 0.25rem;
+}
+
+.pg-brand span {
+    color: var(--pg-accent);
+}
+
+
+/* ---------- Botón hamburguesa ---------- */
+
+.pg-toggler {
+    width: 42px;
+    height: 42px;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+    border: 1px solid var(--pg-border);
+
+    background: var(--pg-surface-alt);
+    color: var(--pg-text);
+
+    cursor: pointer;
+
+    transition:
+            background-color 0.15s ease,
+            border-color 0.15s ease;
+}
+
+.pg-toggler:hover {
+    background-color: var(--pg-surface-hover);
+    border-color: var(--pg-accent);
+}
+
+#pgBrandMobile {
+    display: none !important;
+}
+
+
+/* ============================================================
+   MENÚ MÓVIL
+   ============================================================ */
+
+.pg-mobile-menu {
+    width: min(320px, 85vw) !important;
+
+    background-color: var(--pg-surface);
+    color: var(--pg-text);
+
+    border-left: 1px solid var(--pg-border);
+}
+
+.pg-mobile-menu .offcanvas-header {
+    padding: 1.2rem 1.25rem;
+    border-bottom: 1px solid var(--pg-border);
+}
+
+.pg-mobile-menu .offcanvas-body {
+    padding: 1.25rem;
+}
+
+
+/* ---------- Enlaces móviles ---------- */
+
+.pg-mobile-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.pg-mobile-links a {
+    display: block;
+    width: 100%;
+
+    padding: 0.9rem 0.5rem;
+
+    color: var(--pg-text-muted) !important;
+
+    font-size: 0.95rem;
+    font-weight: 500;
+
+    border-bottom: 1px solid var(--pg-border);
+
+    transition:
+            color 0.15s ease,
+            background-color 0.15s ease,
+            padding-left 0.15s ease;
+}
+
+.pg-mobile-links a:hover {
+    color: var(--pg-accent) !important;
+    background-color: var(--pg-surface-alt);
+    padding-left: 0.8rem;
+}
+
+
+/* ---------- Usuario ---------- */
+
+.pg-user-pill {
+    margin-top: 1rem;
+    padding: 0.75rem;
+
+    background-color: var(--pg-surface-alt);
+    border: 1px solid var(--pg-border);
+    border-radius: var(--pg-radius-sm);
+}
+
+
+/* ============================================================
+   CONTENIDO GENERAL
+   ============================================================ */
+
+.pg-page {
+    width: 100%;
+    padding: 2rem 0 3rem;
+}
+
+.pg-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    margin-bottom: 1.5rem;
+}
+
+.pg-page-header h2 {
+    margin: 0;
+    color: var(--pg-text);
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+
+/* ============================================================
+   HOME
+   ============================================================ */
+
+.pg-home-hero {
+    width: 100%;
+
+    display: flex;
+    align-items: stretch;
+
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+
+    min-height: calc(100vh - 90px);
+
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+
+/* ---------- Visual ---------- */
+
+.pg-home-visual {
+    flex: 1 1 45%;
+
+    min-width: 0;
+    min-height: 320px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    overflow: hidden;
+
+    border-radius: 32px;
+    border: 1px solid var(--pg-border);
+
+    background: radial-gradient(
+            circle at 30% 20%,
+            #2c2c33,
+            var(--pg-surface) 70%
+    );
+}
+
+.pg-home-visual::before {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    border-radius: 50%;
+
+    background: var(--pg-accent-soft);
+
+    top: -40px;
+    left: -40px;
+}
+
+.pg-home-visual::after {
+    content: "";
+
+    position: absolute;
+
+    width: 160px;
+    height: 160px;
+
+    border-radius: 50%;
+
+    border: 1px solid var(--pg-border);
+
+    bottom: -30px;
+    right: -20px;
+}
+
+.pg-home-visual i {
+    position: relative;
+    z-index: 1;
+
+    font-size: clamp(4rem, 8vw, 6rem);
+
+    color: var(--pg-accent);
+}
+
+
+/* ---------- Botones home ---------- */
+
+.pg-home-actions {
+    flex: 1 1 55%;
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    gap: 1.25rem;
+}
+
+.pg-home-btn {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1.5rem 2rem;
+
+    background-color: var(--pg-surface);
+
+    border: 1px solid var(--pg-border);
+    border-radius: var(--pg-radius);
+
+    color: var(--pg-text) !important;
+
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    font-weight: 600;
+
+    transition:
+            border-color 0.15s ease,
+            background-color 0.15s ease,
+            transform 0.1s ease;
+}
+
+.pg-home-btn i {
+    color: var(--pg-accent);
+    font-size: 1.4rem;
+}
+
+.pg-home-btn:hover {
+    border-color: var(--pg-accent);
+    background-color: var(--pg-surface-alt);
+    color: var(--pg-text) !important;
+    transform: translateX(4px);
+}
+
+
+/* ============================================================
+   BOTONES
+   ============================================================ */
+
+.btn-pg-primary,
+.btn-pg-outline,
+.btn-pg-danger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 40px;
+
+    cursor: pointer;
+
+    transition:
+            background-color 0.15s ease,
+            border-color 0.15s ease,
+            color 0.15s ease,
+            transform 0.1s ease;
+}
+
+
+/* ---------- Principal ---------- */
+
+.btn-pg-primary {
+    background-color: var(--pg-accent);
+    border: 1px solid var(--pg-accent);
+    color: #17140f !important;
+
+    font-weight: 600;
+
+    border-radius: var(--pg-radius-sm);
+
+    padding: 0.55rem 1.1rem;
+}
+
+.btn-pg-primary:hover {
+    background-color: var(--pg-accent-hover);
+    border-color: var(--pg-accent-hover);
+    color: #17140f !important;
+}
+
+.btn-pg-primary:active {
+    transform: scale(0.98);
+}
+
+
+/* ---------- Outline ---------- */
+
+.btn-pg-outline {
+    background-color: transparent;
+    border: 1px solid var(--pg-border);
+    color: var(--pg-text) !important;
+
+    font-weight: 500;
+
+    border-radius: var(--pg-radius-sm);
+
+    padding: 0.55rem 1.1rem;
+}
+
+.btn-pg-outline:hover {
+    background-color: var(--pg-surface-hover);
+    border-color: var(--pg-border);
+    color: var(--pg-text) !important;
+}
+
+
+/* ---------- Danger ---------- */
+
+.btn-pg-danger {
+    background-color: transparent;
+    border: 1px solid var(--pg-danger);
+    color: var(--pg-danger) !important;
+
+    font-weight: 500;
+
+    border-radius: var(--pg-radius-sm);
+
+    padding: 0.45rem 0.9rem;
+
+    font-size: 0.85rem;
+}
+
+.btn-pg-danger:hover {
+    background-color: var(--pg-danger-soft);
+    color: var(--pg-danger) !important;
+}
+
+
+/* ---------- Iconos ---------- */
+
+.btn-pg-icon {
+    width: 34px;
+    height: 34px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 9px;
+
+    border: 1px solid var(--pg-border);
+
+    background: rgba(20, 20, 22, 0.6);
+
+    color: var(--pg-text) !important;
+
+    cursor: pointer;
+
+    transition:
+            background-color 0.15s ease,
+            border-color 0.15s ease;
+}
+
+.btn-pg-icon.danger {
+    color: var(--pg-danger) !important;
+    border-color: rgba(229, 98, 106, 0.4);
+}
+
+.btn-pg-icon:hover {
+    background-color: var(--pg-surface-hover);
+}
+
+
+/* ============================================================
+   FILTROS
+   ============================================================ */
+
+.pg-filters {
+    display: flex;
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 0.6rem;
+
+    margin-bottom: 1.5rem;
+}
+
+.pg-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--pg-surface-alt);
+
+    border: 1px solid var(--pg-border);
+
+    color: var(--pg-text-muted);
+
+    border-radius: 999px;
+
+    padding: 0.4rem 1rem;
+
+    font-size: 0.85rem;
+    font-weight: 500;
+
+    cursor: pointer;
+    user-select: none;
+
+    transition:
+            background-color 0.15s ease,
+            color 0.15s ease,
+            border-color 0.15s ease;
+}
+
+.pg-pill.active,
+.pg-pill:hover {
+    background-color: var(--pg-accent-soft);
+    color: var(--pg-accent);
+    border-color: var(--pg-accent);
+}
+
+
+/* ---------- Select de filtros ---------- */
+
+.pg-filter-select {
+    min-width: 170px;
+    max-width: 100%;
+
+    background-color: var(--pg-surface-alt);
+
+    border: 1px solid var(--pg-border);
+
+    color: var(--pg-text);
+
+    border-radius: 999px;
+
+    padding: 0.45rem 2.2rem 0.45rem 1rem;
+
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.pg-filter-select:focus {
+    outline: none;
+
+    background-color: var(--pg-surface-alt);
+
+    border-color: var(--pg-accent);
+
+    color: var(--pg-text);
+
+    box-shadow: 0 0 0 3px var(--pg-accent-soft);
+}
+
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+
+.pg-card {
+    width: 100%;
+
+    background-color: var(--pg-surface);
+
+    border: 1px solid var(--pg-border);
+
+    border-radius: var(--pg-radius);
+
+    padding: 1.5rem;
+
+    height: 100%;
+
+    transition:
+            border-color 0.15s ease,
+            transform 0.15s ease;
+}
+
+.pg-card:hover {
+    border-color: var(--pg-accent);
+}
+
+.pg-card h5,
+.pg-card h6 {
+    color: var(--pg-text);
+    font-weight: 600;
+}
+
+.pg-card p {
+    color: var(--pg-text-muted);
+    font-size: 0.9rem;
+}
+
+
+/* ============================================================
+   PRODUCTOS
+   ============================================================ */
+
+.pg-product-item {
+    min-width: 0;
+}
+
+.pg-product-card {
+    width: 100%;
+
+    background-color: var(--pg-surface);
+
+    border: 1px solid var(--pg-border);
+
+    border-radius: var(--pg-radius);
+
+    overflow: hidden;
+
+    transition:
+            border-color 0.15s ease,
+            transform 0.15s ease;
+}
+
+.pg-product-card:hover {
+    border-color: var(--pg-accent);
+}
+
+.pg-product-card.pg-hidden {
+    display: none !important;
+}
+
+
+/* ---------- Imagen ---------- */
+
+.pg-product-thumb {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    background-color: var(--pg-surface-alt);
+
+    overflow: hidden;
+}
+
+.pg-product-thumb img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+.pg-product-thumb .no-img {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--pg-text-muted);
+
+    font-size: 0.85rem;
+}
+
+
+/* ---------- Acciones producto ---------- */
+
+.pg-product-actions {
+    position: absolute;
+
+    top: 8px;
+    left: 8px;
+    right: 8px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+
+/* ---------- Información ---------- */
+
+.pg-product-body {
+    padding: 1rem;
+
+    min-width: 0;
+}
+
+.pg-product-body h6 {
+    color: var(--pg-text);
+
+    font-weight: 600;
+
+    margin-bottom: 0.25rem;
+
+    overflow-wrap: anywhere;
+}
+
+.pg-product-body p {
+    color: var(--pg-text-muted);
+
+    font-size: 0.82rem;
+
+    margin-bottom: 0.5rem;
+
+    overflow-wrap: anywhere;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+.pg-product-body .price {
+    color: var(--pg-accent);
+    font-weight: 700;
+}
+
+
+/* ============================================================
+   TABLAS
+   ============================================================ */
+
+.pg-table-wrap {
+    width: 100%;
+
+    background-color: var(--pg-surface);
+
+    border: 1px solid var(--pg-border);
+
+    border-radius: var(--pg-radius);
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+.pg-table {
+    width: 100%;
+
+    min-width: 620px;
+
+    margin-bottom: 0;
+
+    color: var(--pg-text);
+
+    border-collapse: collapse;
+}
+
+.pg-table thead th {
+    background-color: var(--pg-surface-alt);
+
+    color: var(--pg-text-muted);
+
+    font-weight: 600;
+
+    font-size: 0.8rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.03em;
+
+    border-bottom: 1px solid var(--pg-border);
+
+    padding: 0.9rem 1rem;
+
+    white-space: nowrap;
+}
+
+.pg-table tbody td {
+    padding: 0.9rem 1rem;
+
+    border-bottom: 1px solid var(--pg-border);
+
+    vertical-align: middle;
+
+    font-size: 0.92rem;
+
+    color: var(--pg-text);
+}
+
+.pg-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.pg-table tbody tr:hover {
+    background-color: var(--pg-surface-alt);
+}
+
+.pg-table tbody tr.pg-hidden {
+    display: none !important;
+}
+
+
+/* ---------- Mensajes vacíos ---------- */
+
+.pg-empty {
+    width: 100%;
+
+    text-align: center;
+
+    color: var(--pg-text-muted);
+
+    padding: 2.5rem 1rem;
+}
+
+.pg-empty.pg-hidden {
+    display: none !important;
+}
+
+
+/* ============================================================
+   BADGES
+   ============================================================ */
+
+.pg-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    max-width: 100%;
+
+    padding: 0.3rem 0.75rem;
+
+    border-radius: 999px;
+
+    font-size: 0.78rem;
+    font-weight: 600;
+
+    background-color: var(--pg-accent-soft);
+
+    color: var(--pg-accent);
+
+    white-space: nowrap;
+}
+
+
+/* ============================================================
+   FORMULARIOS
+   ============================================================ */
+
+.pg-form-card {
+    width: 100%;
+
+    background-color: var(--pg-surface);
+
+    border: 1px solid var(--pg-border);
+
+    border-radius: var(--pg-radius);
+
+    padding: 2rem;
+}
+
+.pg-form-card label.form-label {
+    display: block;
+
+    color: var(--pg-text-muted);
+
+    font-weight: 500;
+
+    font-size: 0.88rem;
+
+    margin-bottom: 0.4rem;
+}
+
+
+/* ---------- Inputs ---------- */
+
+.pg-form-card .form-control,
+.pg-form-card .form-select,
+.pg-form-card textarea.form-control {
+    width: 100%;
+
+    background-color: var(--pg-surface-alt);
+
+    border: 1px solid var(--pg-border);
+
+    color: var(--pg-text);
+
+    border-radius: var(--pg-radius-sm);
+
+    padding: 0.6rem 0.85rem;
+
+    min-height: 42px;
+}
+
+.pg-form-card textarea.form-control {
+    min-height: auto;
+}
+
+.pg-form-card .form-control::placeholder {
+    color: #6c6c74;
+}
+
+.pg-form-card .form-control:focus,
+.pg-form-card .form-select:focus {
+    background-color: var(--pg-surface-alt);
+
+    border-color: var(--pg-accent);
+
+    color: var(--pg-text);
+
+    box-shadow: 0 0 0 3px var(--pg-accent-soft);
+}
+
+
+/* ---------- File input ---------- */
+
+.pg-form-card input[type="file"] {
+    overflow: hidden;
+}
+
+.pg-form-card input[type="file"]::file-selector-button {
+    background-color: var(--pg-surface-hover);
+
+    color: var(--pg-text);
+
+    border: none;
+
+    padding: 0.55rem 0.8rem;
+
+    margin-right: 0.75rem;
+
+    cursor: pointer;
+}
+
+.pg-form-card .form-text {
+    color: var(--pg-text-muted);
+
+    font-size: 0.8rem;
+}
+
+.pg-form-card .text-danger {
+    display: block;
+
+    font-size: 0.82rem;
+
+    margin-top: 0.25rem;
+}
+
+
+/* ============================================================
+   ALERTAS
+   ============================================================ */
+
+.pg-alert {
+    width: 100%;
+
+    border-radius: var(--pg-radius-sm);
+
+    padding: 0.85rem 1.1rem;
+
+    font-size: 0.9rem;
+
+    margin-bottom: 1.25rem;
+
+    border: 1px solid transparent;
+
+    overflow-wrap: anywhere;
+}
+
+.pg-alert-success {
+    background-color: var(--pg-success-soft);
+
+    color: var(--pg-success);
+
+    border-color: rgba(92, 183, 135, 0.3);
+}
+
+.pg-alert-danger {
+    background-color: var(--pg-danger-soft);
+
+    color: var(--pg-danger);
+
+    border-color: rgba(229, 98, 106, 0.3);
+}
+
+
+/* ============================================================
+   LOGIN / AUTENTICACIÓN
+   ============================================================ */
+
+.pg-auth-wrap {
+    width: 100%;
+
+    min-height: calc(100vh - 73px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 2rem 1rem;
+}
+
+.pg-auth-card {
+    width: 100%;
+    max-width: 420px;
+
+    background-color: var(--pg-surface);
+
+    border: 1px solid var(--pg-border);
+
+    border-radius: var(--pg-radius);
+
+    padding: 2.5rem 2rem;
+}
+
+.pg-auth-card h2 {
+    color: var(--pg-text);
+
+    font-weight: 700;
+
+    text-align: center;
+
+    margin-bottom: 0.25rem;
+}
+
+.pg-auth-card .pg-subtitle {
+    text-align: center;
+
+    color: var(--pg-text-muted);
+
+    font-size: 0.88rem;
+
+    margin-bottom: 1.75rem;
+}
+
+.pg-auth-card .form-label {
+    color: var(--pg-text-muted);
+
+    font-weight: 500;
+}
+
+.pg-auth-card .form-control {
+    background-color: var(--pg-surface-alt);
+
+    border: 1px solid var(--pg-border);
+
+    color: var(--pg-text);
+
+    border-radius: var(--pg-radius-sm);
+
+    padding: 0.65rem 0.85rem;
+}
+
+.pg-auth-card .form-control::placeholder {
+    color: #6c6c74;
+}
+
+.pg-auth-card .form-control:focus {
+    background-color: var(--pg-surface-alt);
+
+    border-color: var(--pg-accent);
+
+    color: var(--pg-text);
+
+    box-shadow: 0 0 0 3px var(--pg-accent-soft);
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   TABLET
+   ============================================================ */
+
+@media (max-width: 991.98px) {
+
+    /* Navbar */
+
+    .pg-navbar .container {
+        justify-content: space-between;
+    }
+
+    .pg-nav-group {
+        display: none;
+    }
+
+    #pgBrandMobile {
+        display: inline-block !important;
+    }
+
+    .pg-toggler {
+        display: inline-flex;
+    }
+
+
+    /* Home */
+
+    .pg-home-hero {
+        gap: 1.5rem;
+    }
+
+    .pg-home-btn {
+        padding: 1.25rem 1.5rem;
+    }
+
+
+    /* Productos */
+
+    .pg-product-body {
+        padding: 0.9rem;
+    }
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   MÓVIL
+   ============================================================ */
+
+@media (max-width: 767.98px) {
+
+    /* ---------- Contenedor ---------- */
+
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+
+    /* ---------- Página ---------- */
+
+    .pg-page {
+        padding-top: 1.5rem;
+        padding-bottom: 2rem;
+    }
+
+
+    /* ---------- Header ---------- */
+
+    .pg-page-header {
+        align-items: stretch;
+        flex-direction: column;
+
+        gap: 0.75rem;
+    }
+
+    .pg-page-header h2 {
+        font-size: 1.45rem;
+    }
+
+    .pg-page-header > a,
+    .pg-page-header > button {
+        width: 100%;
+    }
+
+
+    /* ---------- Home ---------- */
+
+    .pg-home-hero {
+        flex-direction: column;
+
+        min-height: auto;
+
+        padding-top: 1.25rem;
+        padding-bottom: 2rem;
+
+        gap: 1rem;
+    }
+
+    .pg-home-visual {
+        min-height: 220px;
+
+        border-radius: 24px;
+    }
+
+    .pg-home-visual i {
+        font-size: 4.5rem;
+    }
+
+    .pg-home-actions {
+        width: 100%;
+
+        gap: 0.85rem;
+    }
+
+    .pg-home-btn {
+        padding: 1rem 1.15rem;
+
+        font-size: 1rem;
+
+        border-radius: 12px;
+    }
+
+    .pg-home-btn i {
+        font-size: 1.15rem;
+    }
+
+
+    /* ---------- Filtros ---------- */
+
+    .pg-filters {
+        width: 100%;
+
+        align-items: stretch;
+
+        gap: 0.5rem;
+    }
+
+    .pg-filter-select {
+        min-width: 0;
+
+        flex: 1 1 100%;
+
+        width: 100%;
+    }
+
+    .pg-pill {
+        font-size: 0.8rem;
+
+        padding: 0.4rem 0.85rem;
+    }
+
+
+    /* ---------- Cards ---------- */
+
+    .pg-card {
+        padding: 1.15rem;
+    }
+
+
+    /* ---------- Formularios ---------- */
+
+    .pg-form-card {
+        padding: 1.25rem;
+    }
+
+    .pg-form-card .row > [class*="col-"] {
+        width: 100%;
+    }
+
+    .pg-form-card .d-flex.gap-2 {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .pg-form-card .d-flex.gap-2 > * {
+        width: 100% !important;
+    }
+
+    .pg-form-card .d-flex.gap-2 button,
+    .pg-form-card .d-flex.gap-2 a {
+        justify-content: center;
+    }
+
+
+    /* ---------- Productos ---------- */
+
+    .pg-product-body {
+        padding: 0.85rem;
+    }
+
+    .pg-product-body p {
+        font-size: 0.78rem;
+    }
+
+    .pg-product-body .d-flex {
+        gap: 0.5rem;
+        align-items: flex-start !important;
+    }
+
+    .pg-product-body .pg-badge {
+        max-width: 55%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+
+    /* ---------- Tablas ---------- */
+
+    .pg-table-wrap {
+        border-radius: 12px;
+    }
+
+    .pg-table {
+        min-width: 580px;
+    }
+
+    .pg-table thead th,
+    .pg-table tbody td {
+        padding: 0.75rem 0.8rem;
+    }
+
+
+    /* ---------- Pedido detalle ---------- */
+
+    .pg-card .row {
+        row-gap: 0.5rem;
+    }
+
+
+    /* ---------- Login ---------- */
+
+    .pg-auth-wrap {
+        min-height: calc(100vh - 65px);
+
+        padding: 1.25rem 1rem;
+
+        align-items: flex-start;
+        padding-top: 3rem;
+    }
+
+    .pg-auth-card {
+        padding: 1.75rem 1.25rem;
+    }
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   CELULARES PEQUEÑOS
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+    /* ---------- Navbar ---------- */
+
+    .pg-navbar {
+        padding: 0.7rem 0;
+    }
+
+    .pg-navbar .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
+    .pg-brand {
+        font-size: 1rem;
+    }
+
+    .pg-toggler {
+        width: 39px;
+        height: 39px;
+    }
+
+
+    /* ---------- Página ---------- */
+
+    .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
+    .pg-page {
+        padding-top: 1.25rem;
+    }
+
+
+    /* ---------- Home ---------- */
+
+    .pg-home-hero {
+        padding-top: 0.75rem;
+    }
+
+    .pg-home-visual {
+        min-height: 180px;
+
+        border-radius: 20px;
+    }
+
+    .pg-home-visual i {
+        font-size: 4rem;
+    }
+
+    .pg-home-btn {
+        padding: 0.9rem 1rem;
+
+        font-size: 0.95rem;
+    }
+
+
+    /* ---------- Formulario ---------- */
+
+    .pg-form-card {
+        padding: 1rem;
+    }
+
+    .pg-form-card label.form-label {
+        font-size: 0.82rem;
+    }
+
+
+    /* ---------- Cards ---------- */
+
+    .pg-card {
+        padding: 1rem;
+    }
+
+
+    /* ---------- Login ---------- */
+
+    .pg-auth-wrap {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        padding-top: 2rem;
+    }
+
+    .pg-auth-card {
+        padding: 1.5rem 1rem;
+
+        border-radius: 14px;
+    }
+
+
+    /* ---------- Productos ---------- */
+
+    .pg-product-body {
+        padding: 0.75rem;
+    }
+
+    .pg-product-body h6 {
+        font-size: 0.85rem;
+    }
+
+    .pg-product-body p {
+        font-size: 0.74rem;
+    }
+
+    .pg-product-body .price {
+        font-size: 0.85rem;
+    }
+
+    .pg-product-body .pg-badge {
+        font-size: 0.68rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+
+    /* ---------- Iconos ---------- */
+
+    .btn-pg-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+
+    /* ---------- Tabla ---------- */
+
+    .pg-table {
+        min-width: 560px;
+    }
+}
+
+
+/* ============================================================
+   CELULARES MUY PEQUEÑOS
+   ============================================================ */
+
+@media (max-width: 360px) {
+
+    .pg-brand {
+        font-size: 0.95rem;
+    }
+
+    .pg-toggler {
+        width: 37px;
+        height: 37px;
+    }
+
+    .pg-home-visual {
+        min-height: 160px;
+    }
+
+    .pg-home-visual i {
+        font-size: 3.5rem;
+    }
+
+    .pg-page-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .pg-form-card {
+        padding: 0.9rem;
+    }
+
+    .pg-auth-card {
+        padding: 1.25rem 0.9rem;
+    }
+}
+
+
+/* ============================================================
+   UTILIDADES
+   ============================================================ */
+
+.pg-hidden {
+    display: none !important;
+}
+
+
+/* Evita que textos largos rompan tarjetas */
+
+.pg-card,
+.pg-form-card,
+.pg-product-card,
+.pg-alert {
+    overflow-wrap: anywhere;
+}
+
+
+/* Formularios y botones nunca deben provocar overflow */
+
+button,
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+
+/* Imagen actual del producto */
+
+.pg-form-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.pg-product-inactive {
+    opacity: 0.55;
 }

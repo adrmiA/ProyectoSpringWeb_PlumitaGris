@@ -1,5 +1,6 @@
 package com.plumitagris.web.client;
 
+import com.plumitagris.web.dto.ActualizarEstadoProductoDTO;
 import com.plumitagris.web.dto.ProductoDTO;
 import com.plumitagris.web.exception.ApiException;
 import org.springframework.core.ParameterizedTypeReference;
@@ -60,6 +61,16 @@ public class ProductoClient {
     public void actualizar(Integer id, ProductoDTO producto) {
         try {
             restClient.put().uri("/productos/{id}", id).body(producto).retrieve().toBodilessEntity();
+        } catch (RestClientResponseException ex) {
+            throw ApiException.from(ex);
+        }
+    }
+
+    public void actualizarEstado(Integer id, boolean activo) {
+        try {
+            restClient.put().uri("/productos/{id}/estado", id)
+                    .body(new ActualizarEstadoProductoDTO(activo))
+                    .retrieve().toBodilessEntity();
         } catch (RestClientResponseException ex) {
             throw ApiException.from(ex);
         }

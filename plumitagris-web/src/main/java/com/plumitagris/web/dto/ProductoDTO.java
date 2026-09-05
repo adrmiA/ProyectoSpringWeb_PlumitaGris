@@ -30,4 +30,6 @@ public class ProductoDTO {
     private CategoriaDTO categoria;
 
     private String imagenUrl;
+
+    private Boolean activo;
 }
